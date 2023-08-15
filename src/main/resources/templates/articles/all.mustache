@@ -1,0 +1,20 @@
+{{>layouts/header}}
+<table class="table">
+    {{#articles}}
+    <thead class="bg-dark text-white p-5">
+    <tr >
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/articles/{{id}}">{{title}}</a></td>
+            <td>{{content}}</td>
+        </tr>
+    </tbody>
+    {{/articles}}
+</table>
+{{>layouts/footer}}
