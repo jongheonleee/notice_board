@@ -1,5 +1,6 @@
 package com.example.notice_board.service;
 
+import com.example.notice_board.dto.ArticleDTO;
 import com.example.notice_board.entity.Article;
 import com.example.notice_board.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,11 @@ public class ArticleService {
     public List<Article> getAll() {
         List<Article> articles = articleRepository.findAll();
         return articles;
+    }
+
+    public Article create(ArticleDTO dto) {
+        Article article = dto.toEntity();
+        Article saved = articleRepository.save(article);
+        return saved;
     }
 }
