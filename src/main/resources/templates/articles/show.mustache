@@ -1,4 +1,5 @@
 {{>layouts/header}}
+{{#article}}
     <table class="table">
         <thead>
         <tr>
@@ -8,14 +9,16 @@
         </tr>
         </thead>
         <tbody>
-        {{#article}}
             <tr>
                 <th>{{id}}</th>
                 <td>{{title}}</td>
                 <td>{{content}}</td>
             </tr>
-        {{/article}}
         </tbody>
     </table>
 <button type="button" class="btn btn-primary" onclick="location.href='/articles'">list</button>
+<button type="button" class="btn btn-secondary" onclick="location.href='/articles/{{id}}/edit'">edit</button>
+<button type="button" class="btn btn-danger" onclick="location.href='/articles/{{id}}/delete'">delete</button>
+
+{{/article}}
 {{>layouts/footer}}

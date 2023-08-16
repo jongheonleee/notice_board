@@ -1,5 +1,6 @@
 package com.example.notice_board.entity;
 
+import com.example.notice_board.dto.ArticleDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +23,14 @@ public class Article {
 
     @Column
     private String content;
+
+    public void patch(Article update) {
+        if (update.getTitle() != null) {
+            this.title = update.title;
+        }
+
+        if (update.getContent() != null) {
+            this.content = update.content;
+        }
+    }
 }

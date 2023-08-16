@@ -61,6 +61,23 @@ public class ArticleController {
         return "/articles/all";
     }
 
+    // Update(갱신) - 1. 게시글 수정
+
+    // 수정 페이지로 이동
+    @GetMapping("/articles/{id}/edit")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        Article article = articleService.getById(id);
+        model.addAttribute("article", article);
+        return "/articles/edit";
+    }
+
+    // 게시글 수정
+    @PostMapping("/articles/{id}/update")
+    public String showUpdatedArticle(@PathVariable Long id, @ModelAttribute ArticleDTO dto) {
+        Article updated = articleService.update(id, dto);
+        return "redirect:/articles/" + updated.getId();
+    }
+
 
 
 

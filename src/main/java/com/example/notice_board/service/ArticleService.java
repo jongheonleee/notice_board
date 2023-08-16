@@ -31,4 +31,14 @@ public class ArticleService {
         Article saved = articleRepository.save(article);
         return saved;
     }
+
+    public Article update(Long id, ArticleDTO dto) {
+        Article target = articleRepository.findById(id).orElse(null);
+        Article update = dto.toEntity();
+        if (target != null && update.getId() == target.getId())  {
+            target.patch(update);
+        }
+        Article updated = articleRepository.save(target);
+        return updated;
+    }
 }
