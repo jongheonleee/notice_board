@@ -1,13 +1,15 @@
 package com.example.notice_board.api;
 
 
+import com.example.notice_board.dto.ArticleDTO;
 import com.example.notice_board.entity.Article;
 import com.example.notice_board.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +24,17 @@ public class ArticleApiController {
     // CRUD
 
     // Create
+    // 게시글 생성
+    @PostMapping("/articles/api/create")
+    public ResponseEntity<Article> create(@RequestBody ArticleDTO dto) {
+        Article created = articleService.create(dto);
+
+        return (created != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(created) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+
 
     // Read
     // 1개 조회
