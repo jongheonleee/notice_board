@@ -74,7 +74,7 @@ public class ArticleApiController {
         Article deleted = articleService.delete(id);
 
         return (deleted != null) ?
-                ResponseEntity.status(HttpStatus.OK).body(deleted) :
+                ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
