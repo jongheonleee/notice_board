@@ -39,14 +39,19 @@ public class ArticleApiController {
     // Read
     // 1개 조회
     @GetMapping("/articles/api/{id}")
-    public Article show(@PathVariable Long id) {
-        return articleService.getById(id);
+    public ResponseEntity<Article> show(@PathVariable Long id) {
+        Article found = articleService.getById(id);
+
+        return (found != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(found) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     // 모두 조회
     @GetMapping("/articles/api")
-    public List<Article> showAll() {
-        return articleService.getAll();
+    public ResponseEntity<List<Article>> showAll() {
+        List<Article> founds = articleService.getAll();
+        return ResponseEntity.status(HttpStatus.OK).body(founds);
     }
 
     // Update
@@ -63,6 +68,15 @@ public class ArticleApiController {
     }
 
     // Delete
+    // 게시글 삭제
+    @DeleteMapping("/articles/api/{id}")
+    public ResponseEntity<Article> delete(@PathVariable Long id) {
+        Article deleted = articleService.delete(id);
+
+        return (deleted != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(deleted) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 
 
 }

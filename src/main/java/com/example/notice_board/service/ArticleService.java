@@ -44,7 +44,9 @@ public class ArticleService {
         return updated;
     }
 
-    public void delete(Long id) {
+    public Article delete(Long id) {
+        Article target = articleRepository.findById(id).orElse(null);
         articleRepository.deleteById(id);
+        return target;
     }
 }
