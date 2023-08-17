@@ -50,6 +50,17 @@ public class ArticleApiController {
     }
 
     // Update
+    // 게시글 업데이트
+    @PatchMapping("/articles/api/{id}")
+    public ResponseEntity<Article> update(@PathVariable Long id,
+                                          @RequestBody ArticleDTO dto) {
+        Article updated = articleService.update(id, dto);
+
+        return (updated != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(updated) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+    }
 
     // Delete
 
