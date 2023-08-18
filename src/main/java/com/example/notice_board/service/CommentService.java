@@ -47,4 +47,15 @@ public class CommentService {
     }
 
 
+    public CommentDTO update(Long id, CommentDTO dto) {
+        Comment target = commentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("댓글 수정 실패!, 해당 댓글을 찾을 수 없습니다."));
+
+        if (target.getId() == id) {
+            target.patch(dto);
+        }
+
+        Comment updated = commentRepository.save(target);
+        return CommentDTO.createCommentDTO(updated);
+
+    }
 }

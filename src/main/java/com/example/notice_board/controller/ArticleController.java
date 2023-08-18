@@ -51,8 +51,10 @@ public class ArticleController {
     public String showArticle(@PathVariable Long id, Model model) {
         Article article = articleService.getById(id);
         List<CommentDTO> comments = commentService.getByArticleId(id);
+
         model.addAttribute("article", article);
         model.addAttribute("comments", comments);
+
         return "/articles/show";
 
     }
