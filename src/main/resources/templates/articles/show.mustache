@@ -19,6 +19,6 @@
 <button type="button" class="btn btn-primary" onclick="location.href='/articles'">list</button>
 <button type="button" class="btn btn-secondary" onclick="location.href='/articles/{{id}}/edit'">edit</button>
 <button type="button" class="btn btn-danger" onclick="location.href='/articles/{{id}}/delete'">delete</button>
-
 {{/article}}
+{{>comments/_comments}}
 {{>layouts/footer}}

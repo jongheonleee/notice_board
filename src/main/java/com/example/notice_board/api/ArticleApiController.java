@@ -2,8 +2,10 @@ package com.example.notice_board.api;
 
 
 import com.example.notice_board.dto.ArticleDTO;
+import com.example.notice_board.dto.CommentDTO;
 import com.example.notice_board.entity.Article;
 import com.example.notice_board.service.ArticleService;
+import com.example.notice_board.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ public class ArticleApiController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private CommentService commentService;
 
 
     // CRUD

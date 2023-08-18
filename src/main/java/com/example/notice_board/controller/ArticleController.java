@@ -2,8 +2,10 @@ package com.example.notice_board.controller;
 
 
 import com.example.notice_board.dto.ArticleDTO;
+import com.example.notice_board.dto.CommentDTO;
 import com.example.notice_board.entity.Article;
 import com.example.notice_board.service.ArticleService;
+import com.example.notice_board.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class ArticleController {
 
     @Autowired
     ArticleService articleService;
+
+    @Autowired
+    CommentService commentService;
 
     // CRUD
 
@@ -45,7 +50,9 @@ public class ArticleController {
     @GetMapping("/articles/{id}")
     public String showArticle(@PathVariable Long id, Model model) {
         Article article = articleService.getById(id);
+        List<CommentDTO> comments = commentService.getByArticleId(id);
         model.addAttribute("article", article);
+        model.addAttribute("comments", comments);
         return "/articles/show";
 
     }
