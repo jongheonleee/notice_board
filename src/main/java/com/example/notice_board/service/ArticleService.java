@@ -1,6 +1,7 @@
 package com.example.notice_board.service;
 
 import com.example.notice_board.dto.ArticleDTO;
+import com.example.notice_board.dto.SearchCondDTO;
 import com.example.notice_board.entity.Article;
 import com.example.notice_board.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -50,5 +51,10 @@ public class ArticleService {
         Article target = articleRepository.findById(id).orElse(null);
         articleRepository.deleteById(id);
         return target;
+    }
+
+    public List<ArticleDTO> getBySearchCond(SearchCondDTO dto) {
+        List<ArticleDTO> targets = articleRepository.findByTitle(dto.getTitle());
+        return targets;
     }
 }

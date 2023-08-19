@@ -3,6 +3,7 @@ package com.example.notice_board.controller;
 
 import com.example.notice_board.dto.ArticleDTO;
 import com.example.notice_board.dto.CommentDTO;
+import com.example.notice_board.dto.SearchCondDTO;
 import com.example.notice_board.entity.Article;
 import com.example.notice_board.service.ArticleService;
 import com.example.notice_board.service.CommentService;
@@ -92,4 +93,17 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
+
+    @PostMapping("/articles/search")
+    public String showSearch(@ModelAttribute SearchCondDTO dto, Model model) {
+        log.info("hello");
+        List<ArticleDTO> dtos = articleService.getBySearchCond(dto);
+
+        for (ArticleDTO articleDTO : dtos) {
+            log.info(articleDTO.toString());
+        }
+
+        model.addAttribute("articles", dtos);
+        return "/articles/all";
+    }
 }
